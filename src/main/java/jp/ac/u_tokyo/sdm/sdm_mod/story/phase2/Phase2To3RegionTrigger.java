@@ -2,6 +2,7 @@ package jp.ac.u_tokyo.sdm.sdm_mod.story.phase2;
 
 import jp.ac.u_tokyo.sdm.sdm_mod.ModSounds;
 import jp.ac.u_tokyo.sdm.sdm_mod.story.StoryModule;
+import jp.ac.u_tokyo.sdm.sdm_mod.story.phase3.Phase3GameOverService;
 import jp.ac.u_tokyo.sdm.sdm_mod.story.runtime.StoryManager;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -159,6 +160,7 @@ public final class Phase2To3RegionTrigger {
     }
 
     private static void notifyTriggered(ServerPlayerEntity player) {
+        Phase3GameOverService.notifyPhase3Start(player);
         Phase2DialogueVoiceService.enqueue(
             player,
             "phase3_start_1",
