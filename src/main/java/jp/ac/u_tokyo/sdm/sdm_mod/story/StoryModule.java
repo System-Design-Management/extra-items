@@ -8,6 +8,7 @@ import jp.ac.u_tokyo.sdm.sdm_mod.story.phase2.Phase2TutorialGateService;
 import jp.ac.u_tokyo.sdm.sdm_mod.story.phase2.Phase2To3RegionTrigger;
 import jp.ac.u_tokyo.sdm.sdm_mod.story.phase2.Phase2TutorialZombieService;
 import jp.ac.u_tokyo.sdm.sdm_mod.story.phase3.Phase3BookshelfService;
+import jp.ac.u_tokyo.sdm.sdm_mod.story.phase3.Phase3GameOverService;
 import jp.ac.u_tokyo.sdm.sdm_mod.story.phase3.Phase3ZombieService;
 import jp.ac.u_tokyo.sdm.sdm_mod.story.phase3.Phase3To4BookTrigger;
 import jp.ac.u_tokyo.sdm.sdm_mod.story.phase4.Phase4IntroDialogueService;
@@ -55,6 +56,7 @@ public final class StoryModule {
         Phase2To3RegionTrigger.initialize();
         Phase2TutorialZombieService.initialize();
         Phase3ZombieService.initialize();
+        Phase3GameOverService.initialize();
         Phase3BookshelfService.initialize();
         Phase3To4BookTrigger.initialize();
         Phase4IntroDialogueService.initialize();
