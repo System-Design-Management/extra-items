@@ -2,6 +2,7 @@ package jp.ac.u_tokyo.sdm.sdm_mod.client;
 
 import jp.ac.u_tokyo.sdm.sdm_mod.ModEntities;
 import jp.ac.u_tokyo.sdm.sdm_mod.client.hud.DoorArrowHud;
+import jp.ac.u_tokyo.sdm.sdm_mod.client.hud.Phase3LivesHud;
 import jp.ac.u_tokyo.sdm.sdm_mod.client.hud.RespawnGuideHud;
 import jp.ac.u_tokyo.sdm.sdm_mod.client.render.CameraShakeState;
 import jp.ac.u_tokyo.sdm.sdm_mod.client.hud.SetupGuideHud;
@@ -21,6 +22,7 @@ import jp.ac.u_tokyo.sdm.sdm_mod.client.screen.warp.WarpSelectScreen;
 import jp.ac.u_tokyo.sdm.sdm_mod.client.story.StoryClientNetworking;
 import jp.ac.u_tokyo.sdm.sdm_mod.network.TeacherDialogueHudPayload;
 import jp.ac.u_tokyo.sdm.sdm_mod.network.TeacherDialoguePayload;
+import jp.ac.u_tokyo.sdm.sdm_mod.story.network.Phase3LivesPayload;
 import jp.ac.u_tokyo.sdm.sdm_mod.story.network.RespawnGuidePayload;
 import jp.ac.u_tokyo.sdm.sdm_mod.story.network.SetupGuideHudPayload;
 import jp.ac.u_tokyo.sdm.sdm_mod.screen.ModScreenHandlers;
@@ -74,6 +76,13 @@ public class SdmModClient implements ClientModInitializer {
         HudElementRegistry.addLast(
             Identifier.of("sdm_mod", "respawn_guide_hud"),
             RespawnGuideHud.INSTANCE
+        );
+        HudElementRegistry.addLast(
+            Identifier.of("sdm_mod", "phase3_lives_hud"),
+            Phase3LivesHud.INSTANCE
+        );
+        ClientPlayNetworking.registerGlobalReceiver(Phase3LivesPayload.ID, (payload, context) ->
+            context.client().execute(() -> Phase3LivesHud.INSTANCE.setRemainingLives(payload.remainingLives()))
         );
         ClientPlayNetworking.registerGlobalReceiver(RespawnGuidePayload.ID, (payload, context) ->
             context.client().execute(RespawnGuideHud.INSTANCE::show)

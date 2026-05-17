@@ -2,6 +2,7 @@ package jp.ac.u_tokyo.sdm.sdm_mod.story.phase3;
 
 import jp.ac.u_tokyo.sdm.sdm_mod.story.StoryModule;
 import jp.ac.u_tokyo.sdm.sdm_mod.story.phase4.Phase4ZombieService;
+import net.minecraft.server.network.ServerPlayerEntity;
 import jp.ac.u_tokyo.sdm.sdm_mod.story.runtime.StoryManager;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -48,6 +49,7 @@ public final class Phase3To4BookTrigger {
             storyManager.advanceToChapter(PHASE4_ID);
             Phase4ZombieService.spawnPhase4Zombies((ServerWorld) world);
             removeMarkerLight((ServerWorld) world);
+            Phase3GameOverService.notifyPhase3End((ServerPlayerEntity) player);
             LOGGER.info("Story advanced from {} to {} by right-clicking block at {}.", PHASE3_ID, PHASE4_ID, BOOK_TRIGGER_POS);
             return ActionResult.SUCCESS;
         });
